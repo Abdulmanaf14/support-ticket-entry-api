@@ -105,7 +105,7 @@ const ticketmodel = mongoose.model("ticketmodel", ticketSchema)
 const countermodel = mongoose.model('counter', counterschema);
 const SupportAgent = mongoose.model('SupportAgent', supportAgentSchema);
 
-app.post('/ticket-rise', async (req, res) => {
+app.post('/support-tickets', async (req, res) => {
 
     const tickets = await ticketmodel.find().lean();
     const ids = tickets.map(item => item.AssignedTo);
@@ -195,7 +195,7 @@ app.get('/support-agents', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-app.get('/ticket-rise', async (req, res) => {
+app.get('/support-tickets', async (req, res) => {
     try {
         const tickets = await ticketmodel.find().lean();
         res.json(tickets);
